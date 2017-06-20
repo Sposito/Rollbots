@@ -10,7 +10,7 @@ public class GenerateJsonMaps : Editor {
 	[MenuItem( "RollBots/Generate JsonFiles" )]
 	static void GenerateJsonFiles(){
 		int chunkSize = 16;
-		Texture2D text = (Texture2D)Resources.Load ("Maps/map16");
+		Texture2D text = (Texture2D)Resources.Load ("Maps/mapclear");
 		int hChunks = text.width / chunkSize;
 		int vChunks = text.height / chunkSize;
 

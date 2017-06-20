@@ -22,6 +22,11 @@ public class Chunk{
 		return map[x,y];
 	}
 
+	public void SetIdByPos(int x, int y, int id){
+		map [x, y] = id;
+		FlatMap ();
+	}
+
 	void FlatMap(){
 		flatMap = new int[sideSize * sideSize];
 		for (int i = 0; i < map.GetLength (0); i++)

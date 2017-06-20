@@ -16,8 +16,10 @@ public enum FaceKind{flat=0, smallSquare=1, smallCircle=2, smallCross=3, bigSqua
 #endregion
 
 public class GameMap {
-	public int chunnkSideSize = 16;
-	int mapSide = 4;
+    public int chunnkSideSize = 16;
+    int mapSide = 4;
+
+    public static bool isStoringPosition;
 
 	public Dictionary<string,Chunk> map = new Dictionary<string,Chunk> ();
 
@@ -32,6 +34,16 @@ public class GameMap {
 		checkPoint = player.position;
 		InitializeChunks();
 	}
+
+    public void EnergyOver(){
+		player.SetPosition(checkPoint);
+        GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
+        playerGO.transform.position = new Vector3(player.position.x + 0f, 0f, player.position.y + 0f);
+        playerGO.transform.rotation = player.Rotation;
+        player.RestoreRotation();
+		player.energy = player.totalEnergy;
+        
+    }
 
 	void InitializeChunks(){
 		_map = new Chunk[mapSide, mapSide];
@@ -92,15 +104,17 @@ public class GameMap {
 
 		}
 
-		else if (tile == 7) {
+		else if (tile == 7) { //Recharge Case
 
-			checkPoint = pos;
+           // Debug.Log("recharged");
+            checkPoint = pos;
 			player.SetPosition(pos);
 			Debug.Log (pos.x + ", " + pos.y);
 			Debug.Log (player.position.x + " " + player.position.y);
 			player.faces = Walker.Walk (player.faces, dir);
 			Debug.Log ("Robot: " + matchTile + ", " + "Floor: " + tile );
 			player.energy = player.totalEnergy;
+
 			return MovementResponse.ok;
 
 		}

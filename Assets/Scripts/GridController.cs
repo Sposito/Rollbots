@@ -4,8 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GridController : MonoBehaviour {
-
+	#if UNITY_EDITOR
 	public bool isEditor = false;
+	#endif
+
+
+    public static GridController singleton;
 	GameObject tile;
 	public GameObject playerCube;
 	public GameObject mainCamera;
@@ -22,9 +26,7 @@ public class GridController : MonoBehaviour {
 	public MovementResponse MovePlayer(Direction dir){
 
 		if (gameMap.player.energy < 1) {
-			gameMap.player.SetPosition( gameMap.checkPoint);
-			GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(gameMap.player.position.x + 0f, 0f, gameMap.player.position.y + 0f);
-			gameMap.player.energy = gameMap.player.totalEnergy;
+            gameMap.EnergyOver();
 			energyUI.value = gameMap.player.energy;
 			return MovementResponse.blocked;
 		}
@@ -50,11 +52,14 @@ public class GridController : MonoBehaviour {
 
 		BuildCube ();
 
-		GameObject camera = (GameObject)Instantiate (mainCamera);
+        GameObject _camera = Instantiate (mainCamera);
+		print (_camera.gameObject.transform.position);
 
 		for(int i = 0; i < transform.childCount; i++){
 			transform.GetChild (i).gameObject.GetComponent<DinamicQuadLoader> ().Init ();
 		}
+
+        singleton = this;
 
 	}
 
@@ -105,7 +110,19 @@ public class GridController : MonoBehaviour {
 				Vector3 pos = new Vector3 (x, floorHeight, y);
 				int id = c.GetTileIdByPos (i, j);
 				GameObject go = (GameObject)Instantiate (tilesGO [id],pos , Quaternion.identity);
+				#if UNITY_EDITOR
+				if (isEditor) {
+					BoxCollider col = go.AddComponent<BoxCollider> ();
+					col.isTrigger = true;
+					//if(col.size.x <= 2)
+						//col.size = Vector3.one;
+					TileEditorBehaviour teBehaviour = go.AddComponent<TileEditorBehaviour> ();
+					teBehaviour.chunk = c;
 
+					teBehaviour.x = i;
+					teBehaviour.y = j;
+				}
+				#endif
 				bool halfX = (i < c.sideSize / 2);
 				bool halfY = (j < c.sideSize / 2);
 

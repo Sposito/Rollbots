@@ -15,9 +15,12 @@ public class CubeController : MonoBehaviour {
 	AudioSource audioSource;
 	float playDuration = .8f;
 
-	//float[] pitches = new float[]{1.0f, 1.122462048309373f, 1.2599210498948734f, 1.3348398541700346f, 1.2599210498948734f, 1.122462048309373f, 1.6817928305074297f, 1.122462048309373f, 1.498307076876682f, 1.6817928305074297f, 0.8908987181403392f, 1.498307076876682f, 1.498307076876682f, 1.4142135623730954f, 1.498307076876682f, 1.6817928305074297f, 1.4142135623730954f, 0.9438743126816934f};
-	float[] pitches = new float[]{0.2499999999999997f, 0.2499999999999997f, 0.2648657735898235f, 0.2806155120773429f, 0.33370996354250826f, 0.2806155120773429f, 0.33370996354250826f, 0.2806155120773429f, 0.2806155120773429f, 0.2648657735898235f, 0.2499999999999997f, 0.37457676921917005f, 0.2499999999999997f, 0.2499999999999997f, 0.37457676921917005f};
-	int current_note = 0;
+    //float[] pitches = new float[]{1.0f, 1.122462048309373f, 1.2599210498948734f, 1.3348398541700346f, 1.2599210498948734f, 1.122462048309373f, 1.6817928305074297f, 1.122462048309373f, 1.498307076876682f, 1.6817928305074297f, 0.8908987181403392f, 1.498307076876682f, 1.498307076876682f, 1.4142135623730954f, 1.498307076876682f, 1.6817928305074297f, 1.4142135623730954f, 0.9438743126816934f};
+    //come s u re
+    //float[] pitches = new float[]{0.2499999999999997f, 0.2499999999999997f, 0.2648657735898235f, 0.2806155120773429f, 0.33370996354250826f, 0.2806155120773429f, 0.33370996354250826f, 0.2806155120773429f, 0.2806155120773429f, 0.2648657735898235f, 0.2499999999999997f, 0.37457676921917005f, 0.2499999999999997f, 0.2499999999999997f, 0.37457676921917005f};
+    //verve
+    float[] pitches = new float[] { 0.396850263f, 0.4719371563f, 0.396850263f, 0.4204482076f, 0.3149802625f, 0.4204482076f, 0.5612310242f, 0.4204482076f, 0.5612310242f, 0.5297315472f, 0.4204482076f, 0.5297315472f };
+    int current_note = 0;
 	void Start(){
 		audioSource = GetComponent<AudioSource> ();
 		gridController = Component.FindObjectOfType<GridController> ();
@@ -39,14 +42,22 @@ public class CubeController : MonoBehaviour {
 			if (direction == TKSwipeDirection.Left && !moving)
 				MoveWest ();
 
+
+
 		};
 		TouchKit.addGestureRecognizer( recognizer );
 	}
 	void Update () {
 		ReadKeyboardInput ();
+//		print (audioSource.time);
 	}
 
-
+    void HandleRecharge(){
+        if (GameMap.isStoringPosition){
+            GridController.gameMap.player.StoreRotation();
+            GameMap.isStoringPosition = false;
+        }
+    }
 
 	void ReadKeyboardInput (){
 		
@@ -128,7 +139,9 @@ public class CubeController : MonoBehaviour {
 		//transform.rotation = initRot;
 		//transform.Rotate(new Vector3(-90f,0f,0f));
 		moving = false;
-		audioSource.Stop ();
+		StopAudio();
+		//Handles rotation storing when saving on recharge point
+		HandleRecharge();
 		if(!allowed)
 			StartCoroutine(RotateNorth(rotatingSpeed * 3, true));
 
@@ -166,7 +179,9 @@ public class CubeController : MonoBehaviour {
 		//transform.rotation = initRot * Quaternion.Euler(new Vector3(90f,0f,0f));
 		//transform.rotation = Quaternion.Euler(rot);
 		moving = false;
-		audioSource.Stop ();
+		StopAudio();
+		//Handles rotation storing when saving on recharge point
+		HandleRecharge();
 		if(!allowed)
 			StartCoroutine(RotateSouth(rotatingSpeed * 3, true));
 	}
@@ -198,7 +213,9 @@ public class CubeController : MonoBehaviour {
 		//transform.rotation = initRot;
 		//transform.Rotate(new Vector3(0f,0f,-90f));
 		moving = false;
-		audioSource.Stop ();
+		StopAudio();
+		//Handles rotation storing when saving on recharge point
+		HandleRecharge();
 		if(!allowed)
 			StartCoroutine(RotateWest(rotatingSpeed * 3, true));
 
@@ -233,7 +250,9 @@ public class CubeController : MonoBehaviour {
 		//transform.rotation = initRot;
 		//transform.Rotate(new Vector3(0f,0f,90f));
 		moving = false;
-		audioSource.Stop ();
+		StopAudio();
+        //Handles rotation storing when saving on recharge point
+        HandleRecharge();
 		if(!allowed)
 			StartCoroutine(RotateEast(rotatingSpeed * 3, true));
 
@@ -247,6 +266,12 @@ public class CubeController : MonoBehaviour {
 		else
 			current_note = 0;
 		audioSource.Play();
+
+	}
+
+	void StopAudio(){
+		//audioSource.Stop ();
+
 	}
 	#if UNITY_EDITOR
 	void OnDrawGizmos(){

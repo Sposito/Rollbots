@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 5f3c8a78465b64233be0313c9dd1fbd7
+timeCreated: 1497974043
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: digital anarchy
+  fontNames:
+  - digital anarchy
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

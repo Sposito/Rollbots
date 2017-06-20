@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4140199725924820}
   - component: {fileID: 33038628431074572}
   - component: {fileID: 23872344753637780}
+  - component: {fileID: 114374243963745018}
   m_Layer: 0
   m_Name: SolarPannel (1)
   m_TagString: Untagged
@@ -38,6 +39,7 @@ GameObject:
   - component: {fileID: 4903555597218392}
   - component: {fileID: 33735452777758248}
   - component: {fileID: 23685299719348382}
+  - component: {fileID: 114318633388277474}
   m_Layer: 0
   m_Name: SolarGimbal
   m_TagString: Untagged
@@ -105,6 +107,7 @@ GameObject:
   - component: {fileID: 4311640937547502}
   - component: {fileID: 33095887844277166}
   - component: {fileID: 23189264586202474}
+  - component: {fileID: 114568546712734314}
   m_Layer: 0
   m_Name: SolarPannel
   m_TagString: Untagged
@@ -402,3 +405,84 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotation: {x: -90, y: 0, z: 0}
+--- !u!114 &114318633388277474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1605398840504600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c17840d5a8e54578be8b25ce30abb8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  z: 1
+  speed: 0.02
+--- !u!114 &114374243963745018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1157340831426388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfd6ec4642dee4178ab06caad0368b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: -5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  x: 1
+  y: 0
+  z: 0
+  speed: -30
+--- !u!114 &114568546712734314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1932510142467892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfd6ec4642dee4178ab06caad0368b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: -5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 0
+    m_RotationOrder: 0
+  x: 1
+  y: 0
+  z: 0
+  speed: 30

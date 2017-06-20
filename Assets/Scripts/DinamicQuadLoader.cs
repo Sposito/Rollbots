@@ -12,10 +12,10 @@ public class DinamicQuadLoader : MonoBehaviour {
 		player = GameObject.FindWithTag ("Player").transform;
 
 
-		quads[0] = transform.FindChild ("I").gameObject;
-		quads[1] = transform.FindChild ("II").gameObject;
-		quads[2] = transform.FindChild ("III").gameObject;
-		quads[3] = transform.FindChild ("IV").gameObject;
+		quads[0] = transform.Find ("I").gameObject;
+		quads[1] = transform.Find ("II").gameObject;
+		quads[2] = transform.Find ("III").gameObject;
+		quads[3] = transform.Find ("IV").gameObject;
 
 		StartCoroutine("CheckVisibility");
 

@@ -22,9 +22,8 @@ GameObject:
   - component: {fileID: 20620654431274496}
   - component: {fileID: 92489533571565908}
   - component: {fileID: 124145945491125248}
-  - component: {fileID: 81044894104264886}
-  - component: {fileID: 114923059916752330}
   - component: {fileID: 114923655780679198}
+  - component: {fileID: 114994396548753970}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -38,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1360057327349880}
-  m_LocalRotation: {x: 0.66261995, y: 0, z: 0, w: 0.7489558}
-  m_LocalPosition: {x: -0.02, y: 6.41, z: -0.03}
+  m_LocalRotation: {x: 0.43365908, y: 0, z: 0, w: 0.9010771}
+  m_LocalPosition: {x: 40, y: 12.6, z: 12.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 83, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 51.4, y: 0, z: 0}
 --- !u!20 &20620654431274496
 Camera:
   m_ObjectHideFlags: 1
@@ -63,7 +62,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 21
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -81,13 +80,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &81044894104264886
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1360057327349880}
-  m_Enabled: 1
 --- !u!92 &92489533571565908
 Behaviour:
   m_ObjectHideFlags: 1
@@ -95,19 +87,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1360057327349880}
   m_Enabled: 1
---- !u!114 &114923059916752330
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1360057327349880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e976ac38d8ce42ea8e61e57a74c6030, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  smoothness: 5
-  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &114923655780679198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,6 +99,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profile: {fileID: 11400000, guid: 1fe16bf4901b24485bcb737eda20febe, type: 2}
+--- !u!114 &114994396548753970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360057327349880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f03d498d8bd241a8ab0382241250f07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothness: 5
+  offset: {x: 0, y: 0, z: 0}
+  isUpponPlayer: 1
+  initialOfset: {x: 0, y: 0, z: -2.72}
 --- !u!124 &124145945491125248
 Behaviour:
   m_ObjectHideFlags: 1

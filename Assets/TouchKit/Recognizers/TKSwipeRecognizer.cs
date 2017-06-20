@@ -37,6 +37,15 @@ public enum TKSwipeDirection
 public class TKSwipeRecognizer : TKAbstractGestureRecognizer
 {
     /// <summary>
+    /// The amount of degres that cardinal directions (Horizontal and Vertical)
+    /// overcomes the diagonals, usefull to get more responsive controls.
+    /// Negative values prioritizes digonals, 0 keep it evenly distributed,
+    /// 45 is the maximum.
+    /// </summary>
+    [Range(-45f, 45f)]
+    public float cardinalPrevalence = 0f;
+
+    /// <summary>
     /// The event that fires when a swipe is recognized.
     /// </summary>
     public event System.Action<TKSwipeRecognizer> gestureRecognizedEvent;
@@ -45,7 +54,7 @@ public class TKSwipeRecognizer : TKAbstractGestureRecognizer
     /// The maximum amount of time for the motion to be considered a swipe.
     /// Setting to 0f will disable the time restriction completely.
     /// </summary>
-    public float timeToSwipe = 0.5f;
+    public float timeToSwipe = 0f;
 
     /// <summary>
     /// The velocity of the swipe, in centimeters based on the screen resolution
@@ -82,7 +91,7 @@ public class TKSwipeRecognizer : TKAbstractGestureRecognizer
     /// The minimum distance in centimeters that the gesture has to make to be considered
     /// a proper swipe, based on resolution and pixel density. Default is 2cm.
     /// </summary>
-    private float _minimumDistance = 2f;
+    private float _minimumDistance = 1f;
 
     /// <summary>
     /// The individual points that make up the gesture, recorded every frame from when a
@@ -164,22 +173,26 @@ public class TKSwipeRecognizer : TKAbstractGestureRecognizer
             swipeAngle = 360 + swipeAngle;
         swipeAngle = 360 - swipeAngle;
 
+        //Cardinal delta, amount to be gained or lost by cardinal prevalence.
+        float cDelta = cardinalPrevalence / 2;
+       
         // depending on the angle of the line, give a logical swipe direction
-        if (swipeAngle >= 292.5f && swipeAngle <= 337.5f)
+
+        if (swipeAngle >= 292.5f + cDelta && swipeAngle <= 337.5f - cDelta)
             completedSwipeDirection = TKSwipeDirection.UpRight;
-        else if (swipeAngle >= 247.5f && swipeAngle <= 292.5f)
+        else if (swipeAngle >= 247.5f - cDelta  && swipeAngle <= 292.5f + cDelta)
             completedSwipeDirection = TKSwipeDirection.Up;
-        else if (swipeAngle >= 202.5f && swipeAngle <= 247.5f)
+        else if (swipeAngle >= 202.5f + cDelta && swipeAngle <= 247.5f - cDelta)
             completedSwipeDirection = TKSwipeDirection.UpLeft;
-        else if (swipeAngle >= 157.5f && swipeAngle <= 202.5f)
+        else if (swipeAngle >= 157.5f - cDelta && swipeAngle <= 202.5f + cDelta)
             completedSwipeDirection = TKSwipeDirection.Left;
-        else if (swipeAngle >= 112.5f && swipeAngle <= 157.5f)
+        else if (swipeAngle >= 112.5f + cDelta && swipeAngle <= 157.5f - cDelta)
             completedSwipeDirection = TKSwipeDirection.DownLeft;
-        else if (swipeAngle >= 67.5f && swipeAngle <= 112.5f)
+        else if (swipeAngle >= 67.5f - cDelta && swipeAngle <= 112.5f + cDelta)
             completedSwipeDirection = TKSwipeDirection.Down;
-        else if (swipeAngle >= 22.5f && swipeAngle <= 67.5f)
+        else if (swipeAngle >= 22.5f + cDelta && swipeAngle <= 67.5f - cDelta)
             completedSwipeDirection = TKSwipeDirection.DownRight;
-        else // swipeAngle >= 337.5f || swipeAngle <= 22.5f
+        else // swipeAngle >= 337.5f - c  || swipeAngle <= 22.5f + c
             completedSwipeDirection = TKSwipeDirection.Right;
 
         return true;
