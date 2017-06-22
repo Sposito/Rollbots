@@ -8,21 +8,53 @@ public class GridController : MonoBehaviour {
 	public bool isEditor = false;
 	#endif
 
-
+    /// <summary>
+    /// Game singleton
+    /// </summary>
     public static GridController singleton;
-	GameObject tile;
+	/// <summary>
+    /// Tile reference
+    /// </summary>
+    GameObject tile;
+    /// <summary>
+    /// Player Rollbot reference
+    /// </summary>
 	public GameObject playerCube;
+
+    /// <summary>
+    /// Camerap refab reference
+    /// </summary>
 	public GameObject mainCamera;
 
+    /// <summary>
+    /// Available blocks and tiles
+    /// </summary>
 	public GameObject[] tilesGO;
+    /// <summary>
+    /// The height of the floor.
+    /// </summary>
 	const float floorHeight = -0.5f;
+    /// <summary>
+    /// Model for the game map.
+    /// </summary>
 	public static GameMap gameMap = new GameMap();
 
+    /// <summary>
+    /// navigation UI reference
+    /// </summary>
 	public SideIconsController iconsUI;
-	public Slider energyUI;
+	/// <summary>
+    /// UI energy bar reference
+    /// </summary>
+    public Slider energyUI;
 
 	public int chunkSideSize = 16;
 
+    /// <summary>
+    /// Moves the player
+    /// </summary>
+    /// <returns>The player.</returns>
+    /// <param name="dir">Dir.</param>
 	public MovementResponse MovePlayer(Direction dir){
 
 		if (gameMap.player.energy < 1) {
@@ -41,25 +73,25 @@ public class GridController : MonoBehaviour {
 	}
 
 
-	void DinamicLoadChunks(){
-		//gameMap.player(
-	}
 	void Start () {
+        //size of each chunk
 		chunkSideSize = 16;
 		energyUI.maxValue = gameMap.player.totalEnergy;
-		print("Camera");
 		LoadMap ();
 
 		BuildCube ();
-
+        //Creates the camera
         GameObject _camera = Instantiate (mainCamera);
-		print (_camera.gameObject.transform.position);
+		
 
+        //Initializes quad loader(process optimization)
 		for(int i = 0; i < transform.childCount; i++){
 			transform.GetChild (i).gameObject.GetComponent<DinamicQuadLoader> ().Init ();
 		}
 
-        singleton = this;
+
+		//Creates the singleton
+		singleton = this;
 
 	}
 
@@ -70,7 +102,7 @@ public class GridController : MonoBehaviour {
 			for (int j = 0; j < width; j++) {
 				gameMap._map [i, j].LoadFromFolder ();
 				//if(i == 2 && j ==2)
-					LoadChunk (gameMap._map [i, j]);
+				LoadChunk (gameMap._map [i, j]);
 			}
 		}
 	}
@@ -150,7 +182,7 @@ public class GridController : MonoBehaviour {
 	/// Instatiates the  Player and adds its behaviour.
 	/// </summary>
 	public void BuildCube(){
-		GameObject cube = (GameObject)Instantiate (playerCube, new Vector3(gameMap.player.position.x + 0f,0f,gameMap.player.position.y), Quaternion.identity);
+		GameObject cube = Instantiate (playerCube, new Vector3(gameMap.player.position.x + 0f,0f,gameMap.player.position.y), Quaternion.identity);
 		cube.AddComponent<CubeController> ();
 
 	}

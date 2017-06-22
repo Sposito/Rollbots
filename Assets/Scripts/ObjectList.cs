@@ -5,12 +5,5 @@ using UnityEngine;
 public class ObjectList : ScriptableObject {
 
 	public GameObject[] props;
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

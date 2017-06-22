@@ -17,7 +17,6 @@ public class FurnaceController : MonoBehaviour {
         rndStart = Random.Range (0f, mutltiplier);
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		myLight.range = baseRange + (Mathf.Sin (Time.time + rndStart) + 1) / 2;
 		myLight.intensity = baseIntensity + (Mathf.Sin (Time.time + rndStart) + 1) / 2;

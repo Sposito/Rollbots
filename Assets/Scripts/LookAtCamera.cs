@@ -10,7 +10,6 @@ public class LookAtCamera : MonoBehaviour {
 		t = Camera.current.transform;	
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (t != null) {
 			cacheRot = transform.rotation;

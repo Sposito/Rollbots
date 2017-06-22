@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class LightiningBaseMover : MonoBehaviour {
 
-	// Use this for initialization
 	Vector2 rndStart;
 	void Start () {
 		rndStart = new Vector2 (Random.Range (-0.3f, 0.3f), Random.Range (-0.3f, 0.3f));
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		Vector2 v = Random.insideUnitCircle;
 		transform.Translate (v.x * Time.deltaTime, 0f, v.y * Time.deltaTime);

@@ -95,10 +95,10 @@ public class GameMap {
 		if (tile == matchTile || tile == 0 ) {
 			
 			player.SetPosition(pos);
-			Debug.Log (pos.x + ", " + pos.y);
-			Debug.Log (player.position.x + " " + player.position.y);
+			//Debug.Log (pos.x + ", " + pos.y);
+			//Debug.Log (player.position.x + " " + player.position.y);
 			player.faces = Walker.Walk (player.faces, dir);
-			Debug.Log ("Robot: " + matchTile + ", " + "Floor: " + tile );
+			//Debug.Log ("Robot: " + matchTile + ", " + "Floor: " + tile );
 			player.energy -= 1;
 			return MovementResponse.ok;
 

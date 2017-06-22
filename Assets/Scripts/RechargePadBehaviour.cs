@@ -12,7 +12,7 @@ public class RechargePadBehaviour : MonoBehaviour {
 	void Awake () {
         audioSource = GetComponent<AudioSource>();
         MeshRenderer[] meshs = GetComponentsInChildren<MeshRenderer>();
-        print(meshs.Length);
+        //print(meshs.Length);
         redGlowingThings = new Material[meshs.Length - 1];
         for (int i = 1; i < meshs.Length; i++){
             redGlowingThings[i - 1] = meshs[i].material;
